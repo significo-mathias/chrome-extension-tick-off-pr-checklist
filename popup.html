@@ -2,11 +2,111 @@
 <html>
 <head>
   <title>Task List Checkbox</title>
+  <style>
+
+    :root {
+      --action-color: #88c39f;
+    }
+
+    #check-all {
+      position: relative;
+      align-items: center;
+      font-weight: bold;
+      display: flex;
+      gap: 10px;
+      width: 200px;
+      height: 50px;
+      padding: 0;
+      border: 1px solid silver;
+      cursor: pointer;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    #done-icon {
+      position: absolute;
+      width: 41px;
+      height: 41px;
+      top: 3px;
+      left: 3px;
+      border-radius: 50%;
+      background: rgb(240, 240, 240);
+    }
+
+    #loading-animation {
+      position: relative;
+      top: 1px;
+      left: 20px;
+    }
+
+    #btn-label-done {
+      color: var(--action-color);
+    }
+
+    .dot-typing {
+      position: relative;
+      left: -9999px;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: var(--action-color);
+      color: var(--action-color);
+      box-shadow: 9984px 0 0 0 var(--action-color), 9999px 0 0 0 var(--action-color), 10014px 0 0 0 var(--action-color);
+      animation: dot-typing 1.5s infinite linear;
+    }
+
+    @keyframes dot-typing {
+      0% {
+        box-shadow: 9984px 0 0 0 var(--action-color), 9999px 0 0 0 var(--action-color), 10014px 0 0 0 var(--action-color);
+      }
+      16.667% {
+        box-shadow: 9984px -10px 0 0 var(--action-color), 9999px 0 0 0 var(--action-color), 10014px 0 0 0 var(--action-color);
+      }
+      33.333% {
+        box-shadow: 9984px 0 0 0 var(--action-color), 9999px 0 0 0 var(--action-color), 10014px 0 0 0 var(--action-color);
+      }
+      50% {
+        box-shadow: 9984px 0 0 0 var(--action-color), 9999px -10px 0 0 var(--action-color), 10014px 0 0 0 var(--action-color);
+      }
+      66.667% {
+        box-shadow: 9984px 0 0 0 var(--action-color), 9999px 0 0 0 var(--action-color), 10014px 0 0 0 var(--action-color);
+      }
+      83.333% {
+        box-shadow: 9984px 0 0 0 var(--action-color), 9999px 0 0 0 var(--action-color), 10014px -10px 0 0 var(--action-color);
+      }
+      100% {
+        box-shadow: 9984px 0 0 0 var(--action-color), 9999px 0 0 0 var(--action-color), 10014px 0 0 0 var(--action-color);
+      }
+    }
+  </style>
+
+
+  <!-- https://bbbootstrap.com/snippets/animated-checkmark-50934051 -->
+  <style>
+    .checkmark__circle{stroke-dasharray: 166;stroke-dashoffset: 166;stroke-width: 2;stroke-miterlimit: 10;stroke: var(--action-color);fill: none;animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards}
+    .checkmark{width: 41px;height: 41px;border-radius: 50%;display: block;stroke-width: 2;stroke: #fff;stroke-miterlimit: 10;box-shadow: inset 0px 0px 0px var(--action-color);animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both}
+    .checkmark__check{transform-origin: 50% 50%;stroke-dasharray: 48;stroke-dashoffset: 48;animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards}
+    @keyframes stroke{100%{stroke-dashoffset: 0}}
+    @keyframes scale{0%, 100%{transform: none} 50%{transform: scale3d(1.1, 1.1, 1)}}
+    @keyframes fill{100%{box-shadow: inset 0px 0px 0px 30px var(--action-color)}}
+  </style>
+
 </head>
 <body>
-<button id="check-all" style="align-items: center; font-weight: bold; display: flex; gap: 10px; width: 200px; height: 50px; padding: 0; border: 1px solid silver; cursor: pointer; border-radius: 5px; overflow: hidden;">
+<button id="check-all">
   <img src="icon.webp" style="height: 100%;"/>
-  Tick Off Checklist
+  <span id="btn-label" style="">Tick Off Checklist</span>
+  <span id="btn-label-done" style="display: none;">Done!</span>
+  <div id="loading-animation" style="display: none;">
+    <div class="dot-typing"></div>
+  </div>
+
+  <div id="done-icon" style="display: none;">
+    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+      <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+      <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+    </svg>
+  </div>
 </button>
 <script src="popup.js"></script>
 </body>
